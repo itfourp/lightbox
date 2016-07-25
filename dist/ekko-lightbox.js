@@ -419,6 +419,20 @@ License: https://github.com/ashleydw/lightbox/blob/master/LICENSE
     });
   };
 
+  $.fn.newEkkoLightbox = function(options) {
+    return this.each(function() {
+      var $this;
+      $this = $(this);
+      options = $.extend({
+        remote: $this.attr('data-remote') || $this.attr('href'),
+        gallery_parent_selector: $this.attr('data-parent'),
+        type: $this.attr('data-type')
+      }, options);
+      new EkkoLightbox(this, options);
+      return this;
+    });
+  };
+
   $.fn.ekkoLightbox.defaults = {
     gallery_parent_selector: 'document.body',
     left_arrow_class: '.glyphicon .glyphicon-chevron-left',
