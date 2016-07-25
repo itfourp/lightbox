@@ -363,7 +363,19 @@ $.fn.ekkoLightbox = ( options ) ->
 		}, options, $this.data())
 		new EkkoLightbox(@, options)
 		@
+		
+$.fn.newEkkoLightbox = ( options ) ->
+	@each ->
 
+		$this = $(this)
+		options = $.extend({
+			remote : $this.attr('data-remote') || $this.attr('href')
+			gallery_parent_selector : $this.attr('data-parent')
+			type : $this.attr('data-type')
+		}, options)
+		new EkkoLightbox(@, options)
+		@
+		
 $.fn.ekkoLightbox.defaults = {
 	gallery_parent_selector: 'document.body'
 	left_arrow_class: '.glyphicon .glyphicon-chevron-left' #include class . here - they are stripped out later
